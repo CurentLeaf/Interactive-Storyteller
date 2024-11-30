@@ -1,5 +1,6 @@
 const storyContainer = document.getElementById("story-container");
 const storyText = document.getElementById("story-text");
+const choicesContainer = document.getElementById('choices-container');
 
 const stories = {
     "sci-fi": {
@@ -104,7 +105,7 @@ const stories = {
             "Ignore the prophecy": "You ignore the message, choosing instead to live a quiet life. However, the kingdoms continue to war, and the opportunity to bring peace slips away.",
         },
     },
-    apocalyptic: {
+    "apocalyptic": {
         start: "The world has ended. Survival is key. What do you do?",
         choices: {
             "Search for supplies": "You find a group of survivors.",
@@ -113,18 +114,45 @@ const stories = {
     },
 };
 
-// To store the current story
-let currentStory = null; // This starts the story at the "medieval" point
+// Set current story to null to await user's genre selection
+let currentStoryType = null;
+let currentStoryKey = null;
+
+// Function to display the genre selection
+function showStorySelection() {
+    // Display a starting message
+    storyText.innerHTML = "Welcome to the Interactive Storyteller! Choose your adventure:";
+
+    // Clear previous choices
+    choicesContainer.innerHTML = '';
+
+    // Create buttons for story type selection
+    const genres = ["sci-fi", "medieval", "apocalyptic"];
+    genres.forEach((genre) => {
+        const button = document.createElement('button');
+        button.innerText = genre.charAt(0).toUpperCase() + genre.slice(1);
+        button.onclick = () => startStory(genre);
+        choicesContainer.appendChild(button);
+    });
+}
+
+// Function to start the story based on the selected genre
+function startStory(selectedGenre) {
+    currentStoryType = selectedGenre;
+    currentStoryKey = currentStoryType;  // Set the current story key based on the selected genre
+
+    // Display the first part of the story for the selected genre
+    displayStory(currentStoryKey);
+}
 
 // Function to display the current story and choices
 function displayStory(storyKey) {
     const story = stories[storyKey];
-    
+
     // Display the story text
-    document.getElementById('story-text').innerHTML = story.start;
+    storyText.innerHTML = story.start;
 
     // Clear existing choices
-    const choicesContainer = document.getElementById('choices-container');
     choicesContainer.innerHTML = '';
 
     // Add new choice buttons
@@ -138,12 +166,12 @@ function displayStory(storyKey) {
 
 // Function to handle when a user makes a choice
 function handleChoice(choice) {
-    const nextStoryKey = stories[currentStory].choices[choice];
+    const nextStoryKey = stories[currentStoryKey].choices[choice];
     if (nextStoryKey) {
-        currentStory = nextStoryKey;
-        displayStory(currentStory);
+        currentStoryKey = nextStoryKey;  // Update to the next story key
+        displayStory(currentStoryKey);  // Display the next story
     }
 }
 
-// Initial call to start the story
-displayStory(currentStory);
+// Initial call to show the genre selection
+showStorySelection();
