@@ -202,7 +202,13 @@ class Storyteller {
         this.currentStory = null; // To track the active story
     }
 
-    startStory(storyType) {
+     // Start the story based on the selected genre
+     startStory(storyType) {
+        // Hide the initial genre choices
+        const genreChoices = document.querySelectorAll('.choice-btn');
+        genreChoices.forEach(btn => btn.style.display = 'none');
+
+        // Show the story plot and choices
         this.currentStory = this.stories[storyType];  // Store the current story
         this.currentPlotIndex = 0;  // Start from the first plot
         this.displayPlot(this.currentStory.plot[this.currentPlotIndex]);  // Display the first plot
@@ -213,11 +219,11 @@ class Storyteller {
         // Update the story text
         document.getElementById('story-text').textContent = plot.text;
 
-        // Remove existing buttons (if any)
+        // Remove any existing story buttons (choices)
         const choiceButtonsContainer = document.getElementById('choice-buttons');
         choiceButtonsContainer.innerHTML = ''; 
 
-        // Create new buttons based on the current choices
+        // Create new buttons based on the current plot's choices
         plot.choices.forEach(choice => {
             const button = document.createElement('button');
             button.classList.add('choice-btn');
@@ -238,7 +244,7 @@ class Storyteller {
 // Initialize the Storyteller class
 const storyteller = new Storyteller();
 
-// Handle genre selection
+// Handle genre selection (initial buttons)
 document.querySelectorAll('.choice-btn').forEach(button => {
     button.addEventListener('click', (event) => {
         const genre = event.target.getAttribute('data-choice');
