@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Storyteller</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Storyteller</title>
 </head>
 <body>
     <div id="story-container">
         <p id="story-text">Welcome to the storyteller! Choose your genre:</p>
+        <button class="choice-btn" data-choice="sci-fi">Sci-Fi</button>
+        <button class="choice-btn" data-choice="medieval">Medieval</button>
+        <button class="choice-btn" data-choice="apocalyptic">Apocalyptic</button>
     </div>
-    
-    <!-- The choices for the story will appear here after the genre is selected -->
-    <div id="choices-container"></div>    
-    <script src="script.js"></script>
+    <div id="choices-container"></div>
+
+    <script src="story.js"></script> <!-- Make sure the JS file is correctly linked -->
 </body>
 </html>

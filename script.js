@@ -6,7 +6,7 @@ const stories = {
     "sci-fi": {
         start: "You wake up on a distant planet. What do you do?",
         choices: {
-            "Explore the planet": "sci-fi-explore",  // Point to a new key for next story
+            "Explore the planet": "sci-fi-explore",  // Points to the next story section
             "Stay where you are": "sci-fi-creature",
         },
     },
@@ -75,13 +75,13 @@ const stories = {
     },
 };
 
-// Set current story to null to await user's genre selection
+// Store current state of the story
 let currentStoryType = null;
 let currentStoryKey = null;
 
 // Function to display the genre selection
 function showStorySelection() {
-    // Attach event listeners to the existing genre selection buttons
+    // Attach event listeners to the genre buttons
     const genreButtons = document.querySelectorAll('.choice-btn');
     genreButtons.forEach(button => {
         button.addEventListener('click', () => startStory(button.getAttribute('data-choice')));
@@ -91,10 +91,11 @@ function showStorySelection() {
 // Function to start the story based on the selected genre
 function startStory(selectedGenre) {
     currentStoryType = selectedGenre;
-    currentStoryKey = currentStoryType;  // Set the current story key based on the selected genre
+    currentStoryKey = selectedGenre;  // Set the initial story key based on the genre selected
 
-    // Hide the genre selection and start the story
-    document.getElementById("story-container").style.display = 'none';
+    // Hide the genre selection and show the story container
+    storyContainer.style.display = 'none'; // Hide genre selection
+    choicesContainer.style.display = 'block'; // Show story choices
 
     // Display the first part of the story for the selected genre
     displayStory(currentStoryKey);
@@ -103,7 +104,7 @@ function startStory(selectedGenre) {
 // Function to display the current story and choices
 function displayStory(storyKey) {
     const story = stories[storyKey];
-
+    
     // Display the story text
     storyText.innerHTML = story.start;
 
@@ -121,14 +122,13 @@ function displayStory(storyKey) {
 
 // Function to handle when a user makes a choice
 function handleChoice(choice, currentKey) {
-    // Get the next story section key based on the selected choice
     const nextStoryKey = stories[currentKey].choices[choice];
 
     if (nextStoryKey) {
-        currentStoryKey = nextStoryKey;  // Update to the next story key
+        currentStoryKey = nextStoryKey;  // Update the current story to the next one
         displayStory(currentStoryKey);  // Display the next part of the story
     }
 }
 
-// Initial call to show the genre selection
+// Initialize story selection
 showStorySelection();
