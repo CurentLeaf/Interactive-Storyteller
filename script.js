@@ -1,84 +1,130 @@
-// Define the story content and choices
-const stories = {
-    "sci-fi": {
-        start: "You wake up on a distant planet. What do you do?",
-        choices: {
-            "Explore the planet": "You find a crashed spaceship.",
-            "Stay where you are": "A strange creature approaches.",
-        },
-    },
-    "medieval": {
-        start: "You are in a medieval town. What do you do?",
-        choices: {
-            "Enter the castle": "The massive gates creak open, revealing the grand entrance.",
-            "Go to the marketplace": "The marketplace is bustling with activity.",
-            "Visit the tavern": "The tavern is filled with laughter and music.",
-        },
-    },
-    "apocalyptic": {
-        start: "The world has ended. Survival is key. What do you do?",
-        choices: {
-            "Search for supplies": "You find a group of survivors.",
-            "Build a shelter": "You fend off raiders.",
-        },
-    },
-};
+class Storyteller {
+    constructor() {
+        this.stories = {
+            sciFi: {
+                title: "Galactic Odyssey",
+                plot: [
+                    {
+                        text: "You are a space explorer on a mission to find a new habitable planet. Do you:",
+                        choices: [
+                            { text: "Investigate a mysterious signal", next: 1 },
+                            { text: "Continue to the next star system", next: 2 }
+                        ]
+                    },
+                    {
+                        text: "The signal leads you to an abandoned spaceship. Do you:",
+                        choices: [
+                            { text: "Board the spaceship", next: 3 },
+                            { text: "Call for backup", next: 4 }
+                        ]
+                    },
+                    {
+                        text: "You arrive at a barren planet. Do you:",
+                        choices: [
+                            { text: "Set up a base", next: 5 },
+                            { text: "Explore the surface", next: 6 }
+                        ]
+                    },
+                    // Additional plot points...
+                ]
+            },
+            medieval: {
+                title: "Quest for the Lost Kingdom",
+                plot: [
+                    {
+                        text: "You are a knight on a quest to find the lost kingdom. Do you:",
+                        choices: [
+                            { text: "Consult the village elder", next: 1 },
+                            { text: "Set off into the forest", next: 2 }
+                        ]
+                    },
+                    {
+                        text: "The elder tells you of a hidden map. Do you:",
+                        choices: [
+                            { text: "Search the elder's house", next: 3 },
+                            { text: "Ignore the elder's advice", next: 4 }
+                        ]
+                    },
+                    {
+                        text: "The forest is dark and eerie. Do you:",
+                        choices: [
+                            { text: "Light a torch", next: 5 },
+                            { text: "Proceed in darkness", next: 6 }
+                        ]
+                    },
+                    // Additional plot points...
+                ]
+            },
+            apocalyptic: {
+                title: "Survivor's Dilemma",
+                plot: [
+                    {
+                        text: "The world has ended, and you are one of the few survivors. Do you:",
+                        choices: [
+                            { text: "Search for food", next: 1 },
+                            { text: "Look for other survivors", next: 2 }
+                        ]
+                    },
+                    {
+                        text: "You find a can of food. Do you:",
+                        choices: [
+                            { text: "Eat it immediately", next: 3 },
+                            { text: "Save it for later", next: 4 }
+                        ]
+                    },
+                    {
+                        text: "You hear voices in the distance. Do you:",
+                        choices: [
+                            { text: "Investigate the voices", next: 5 },
+                            { text: "Hide and observe", next: 6 }
+                        ]
+                    },
+                    // Additional plot points...
+                ]
+            }
+        };
+        this.currentStory = null; // To track the active story
+    }
 
-// Store the current state of the story
-let currentStoryKey = null;
-
-// Function to show the genre selection screen
-function showStorySelection() {
-    const genreButtons = document.querySelectorAll('.choice-btn');
-    genreButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            startStory(button.getAttribute('data-choice'));
+    // Initialize genre selection
+    initialize() {
+        document.querySelectorAll('.choice-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const genre = e.target.getAttribute('data-choice');
+                this.startStory(genre);
+            });
         });
-    });
-}
+    }
 
-// Function to start the story based on the selected genre
-function startStory(selectedGenre) {
-    currentStoryKey = selectedGenre;
-    const story = stories[currentStoryKey];
+    // Start the selected story
+    startStory(storyType) {
+        this.currentStory = this.stories[storyType];
+        document.getElementById('story-container').style.display = 'none';
+        document.getElementById('choices-container').style.display = 'block';
+        this.displayPlot(this.currentStory.plot[0]);
+    }
 
-    // Hide the genre selection and show the story and choices container
-    document.getElementById("story-container").style.display = 'none';
-    document.getElementById("choices-container").style.display = 'block';
+    // Display plot and choices
+    displayPlot(plot) {
+        document.getElementById('story-text').innerText = plot.text;
+        const choicesContainer = document.getElementById('choices');
+        choicesContainer.innerHTML = ''; // Clear previous choices
 
-    // Display the first part of the story
-    displayStory(story);
-}
+        plot.choices.forEach(choice => {
+            const button = document.createElement('button');
+            button.innerText = choice.text;
+            button.onclick = () => this.handleChoice(choice.next);
+            choicesContainer.appendChild(button);
+        });
+    }
 
-// Function to display the current story and choices
-function displayStory(story) {
-    // Display the story text
-    document.getElementById("story-text").innerText = story.start;
-
-    // Clear any existing choice buttons
-    const choicesContainer = document.getElementById('choices-container');
-    choicesContainer.innerHTML = '';
-
-    // Add new choice buttons
-    for (let choice in story.choices) {
-        const button = document.createElement('button');
-        button.innerText = choice;
-        button.onclick = () => handleChoice(choice, story);
-        choicesContainer.appendChild(button);
+    // Handle user choice and progress to the next plot
+    handleChoice(nextPlotIndex) {
+        const nextPlot = this.currentStory.plot[nextPlotIndex];
+        this.displayPlot(nextPlot);
     }
 }
 
-// Function to handle when a user makes a choice
-function handleChoice(choice, currentStory) {
-    // Use the choice to get the next part of the story
-    const nextStoryText = currentStory.choices[choice];
-
-    // Display the next part of the story
-    document.getElementById("story-text").innerText = nextStoryText;
-
-    // Optionally, show more choices after a part of the story
-    // For simplicity, we'll just end after this for now
-}
-
-// Initialize story selection
-showStorySelection();
+// Initialize the Storyteller instance
+const storyteller = new Storyteller();
+storyteller.initialize();

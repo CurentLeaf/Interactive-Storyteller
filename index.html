@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Storyteller</title>
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <div id="story-container">
         <p id="story-text">Welcome to the storyteller! Choose your genre:</p>
-        <button class="choice-btn" data-choice="sci-fi">Sci-Fi</button>
+        <button class="choice-btn" data-choice="sciFi">Sci-Fi</button>
         <button class="choice-btn" data-choice="medieval">Medieval</button>
         <button class="choice-btn" data-choice="apocalyptic">Apocalyptic</button>
     </div>
 
     <div id="choices-container" style="display:none;">
-        <!-- Choices will appear here after selecting a genre -->
+        <p id="story-text"></p>
+        <div id="choices"></div>
     </div>
 
     <script src="story.js"></script>
