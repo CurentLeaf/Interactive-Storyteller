@@ -6,7 +6,7 @@ const stories = {
     "sci-fi": {
         start: "You wake up on a distant planet. What do you do?",
         choices: {
-            "Explore the planet": "sci-fi-explore",  // Points to the next story section
+            "Explore the planet": "sci-fi-explore", 
             "Stay where you are": "sci-fi-creature",
         },
     },
