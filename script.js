@@ -113,26 +113,37 @@ const stories = {
     },
 };
 
-let currentStory = null;
+// To store the current story
+let currentStory = 'medieval'; // This starts the story at the "medieval" point
 
-document.querySelectorAll(".choice-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-        const choice = button.dataset.choice;
-        if (!currentStory) {
-            currentStory = stories[choice];
-            updateStory(currentStory.start, currentStory.choices);
-        }
-    });
-});
+// Function to display the current story and choices
+function displayStory(storyKey) {
+    const story = stories[storyKey];
+    
+    // Display the story text
+    document.getElementById('story-text').innerHTML = story.start;
 
-function updateStory(text, choices) {
-    storyText.textContent = text;
-    storyContainer.innerHTML = `<p id="story-text">${text}</p>`;
-    Object.entries(choices).forEach(([option, result]) => {
-        const button = document.createElement("button");
-        button.textContent = option;
-        button.className = "choice-btn";
-        button.onclick = () => updateStory(result, {});
-        storyContainer.appendChild(button);
-    });
+    // Clear existing choices
+    const choicesContainer = document.getElementById('choices-container');
+    choicesContainer.innerHTML = '';
+
+    // Add new choice buttons
+    for (let choice in story.choices) {
+        const button = document.createElement('button');
+        button.innerText = choice;
+        button.onclick = () => handleChoice(choice);
+        choicesContainer.appendChild(button);
+    }
 }
+
+// Function to handle when a user makes a choice
+function handleChoice(choice) {
+    const nextStoryKey = stories[currentStory].choices[choice];
+    if (nextStoryKey) {
+        currentStory = nextStoryKey;
+        displayStory(currentStory);
+    }
+}
+
+// Initial call to start the story
+displayStory(currentStory);
