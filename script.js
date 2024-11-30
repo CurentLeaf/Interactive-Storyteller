@@ -9,7 +9,7 @@ const stories = {
             "Stay where you are": "A strange creature approaches.",
         },
     },
-    medieval: {
+    "medieval": {
         start: "You are in a medieval town. What do you do?",
         choices: {
             "Enter the castle": "The massive gates creak open, revealing the grand entrance. A knight in shining armor steps forward and asks, 'What is your purpose here?'",
@@ -114,7 +114,7 @@ const stories = {
 };
 
 // To store the current story
-let currentStory = 'medieval'; // This starts the story at the "medieval" point
+let currentStory = null; // This starts the story at the "medieval" point
 
 // Function to display the current story and choices
 function displayStory(storyKey) {
