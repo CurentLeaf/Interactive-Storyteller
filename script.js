@@ -1,133 +1,83 @@
-const storyContainer = document.getElementById("story-container");
-const storyText = document.getElementById("story-text");
-const choicesContainer = document.getElementById('choices-container');
-
+// Define the story content and choices
 const stories = {
     "sci-fi": {
         start: "You wake up on a distant planet. What do you do?",
         choices: {
-            "Explore the planet": "sci-fi-explore", 
-            "Stay where you are": "sci-fi-creature",
+            "Explore the planet": "You find a crashed spaceship.",
+            "Stay where you are": "A strange creature approaches.",
         },
     },
     "medieval": {
         start: "You are in a medieval town. What do you do?",
         choices: {
-            "Enter the castle": "medieval-castle",
-            "Go to the marketplace": "medieval-marketplace",
-            "Visit the tavern": "medieval-tavern",
+            "Enter the castle": "The massive gates creak open, revealing the grand entrance.",
+            "Go to the marketplace": "The marketplace is bustling with activity.",
+            "Visit the tavern": "The tavern is filled with laughter and music.",
         },
     },
     "apocalyptic": {
         start: "The world has ended. Survival is key. What do you do?",
         choices: {
-            "Search for supplies": "apocalyptic-supplies",
-            "Build a shelter": "apocalyptic-shelter",
-        },
-    },
-
-    // Story sections for the sci-fi path
-    "sci-fi-explore": {
-        start: "You find a crashed spaceship.",
-        choices: {
-            "Investigate the ship": "sci-fi-ship-investigation",
-            "Leave the ship": "sci-fi-leave",
-        },
-    },
-    "sci-fi-creature": {
-        start: "A strange creature approaches.",
-        choices: {
-            "Talk to the creature": "sci-fi-creature-talk",
-            "Run away": "sci-fi-creature-run",
-        },
-    },
-
-    // Story sections for the medieval path
-    "medieval-castle": {
-        start: "You approach the castle's massive gates.",
-        choices: {
-            "Knock on the door": "medieval-knock",
-            "Sneak around the back": "medieval-sneak",
-        },
-    },
-    "medieval-marketplace": {
-        start: "The marketplace bustles with activity. A shady figure beckons you over.",
-        choices: {
-            "Approach the shady figure": "medieval-approach",
-            "Ignore the figure and walk away": "medieval-ignore",
-        },
-    },
-
-    // Story sections for the apocalyptic path
-    "apocalyptic-supplies": {
-        start: "You find a group of survivors.",
-        choices: {
-            "Join the group": "apocalyptic-join-group",
-            "Leave the group": "apocalyptic-leave-group",
-        },
-    },
-    "apocalyptic-shelter": {
-        start: "You fend off raiders and build a shelter.",
-        choices: {
-            "Reinforce the shelter": "apocalyptic-reinforce",
-            "Escape the shelter": "apocalyptic-escape",
+            "Search for supplies": "You find a group of survivors.",
+            "Build a shelter": "You fend off raiders.",
         },
     },
 };
 
-// Store current state of the story
-let currentStoryType = null;
+// Store the current state of the story
 let currentStoryKey = null;
 
-// Function to display the genre selection
+// Function to show the genre selection screen
 function showStorySelection() {
-    // Attach event listeners to the genre buttons
     const genreButtons = document.querySelectorAll('.choice-btn');
     genreButtons.forEach(button => {
-        button.addEventListener('click', () => startStory(button.getAttribute('data-choice')));
+        button.addEventListener('click', function() {
+            startStory(button.getAttribute('data-choice'));
+        });
     });
 }
 
 // Function to start the story based on the selected genre
 function startStory(selectedGenre) {
-    currentStoryType = selectedGenre;
-    currentStoryKey = selectedGenre;  // Set the initial story key based on the genre selected
+    currentStoryKey = selectedGenre;
+    const story = stories[currentStoryKey];
 
-    // Hide the genre selection and show the story container
-    storyContainer.style.display = 'none'; // Hide genre selection
-    choicesContainer.style.display = 'block'; // Show story choices
+    // Hide the genre selection and show the story and choices container
+    document.getElementById("story-container").style.display = 'none';
+    document.getElementById("choices-container").style.display = 'block';
 
-    // Display the first part of the story for the selected genre
-    displayStory(currentStoryKey);
+    // Display the first part of the story
+    displayStory(story);
 }
 
 // Function to display the current story and choices
-function displayStory(storyKey) {
-    const story = stories[storyKey];
-    
+function displayStory(story) {
     // Display the story text
-    storyText.innerHTML = story.start;
+    document.getElementById("story-text").innerText = story.start;
 
-    // Clear existing choices
+    // Clear any existing choice buttons
+    const choicesContainer = document.getElementById('choices-container');
     choicesContainer.innerHTML = '';
 
     // Add new choice buttons
     for (let choice in story.choices) {
         const button = document.createElement('button');
         button.innerText = choice;
-        button.onclick = () => handleChoice(choice, storyKey);
+        button.onclick = () => handleChoice(choice, story);
         choicesContainer.appendChild(button);
     }
 }
 
 // Function to handle when a user makes a choice
-function handleChoice(choice, currentKey) {
-    const nextStoryKey = stories[currentKey].choices[choice];
+function handleChoice(choice, currentStory) {
+    // Use the choice to get the next part of the story
+    const nextStoryText = currentStory.choices[choice];
 
-    if (nextStoryKey) {
-        currentStoryKey = nextStoryKey;  // Update the current story to the next one
-        displayStory(currentStoryKey);  // Display the next part of the story
-    }
+    // Display the next part of the story
+    document.getElementById("story-text").innerText = nextStoryText;
+
+    // Optionally, show more choices after a part of the story
+    // For simplicity, we'll just end after this for now
 }
 
 // Initialize story selection
