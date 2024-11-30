@@ -212,35 +212,47 @@ class Storyteller {
         });
     }
 
-    // Start the selected story
-    startStory(storyType) {
-        this.currentStory = this.stories[storyType];
-        document.getElementById('story-container').style.display = 'none';
-        document.getElementById('choices-container').style.display = 'block';
-        this.displayPlot(this.currentStory.plot[0]);
+     // Start the story based on the selected genre
+     startStory(storyType) {
+        this.currentStory = this.stories[storyType];  // Store the current story
+        this.currentPlotIndex = 0;  // Start from the first plot
+        this.displayPlot(this.currentStory.plot[this.currentPlotIndex]);  // Display the first plot
     }
 
-    // Display plot and choices
+    // Display the current plot and choices
     displayPlot(plot) {
-        document.getElementById('story-text').innerText = plot.text;
-        const choicesContainer = document.getElementById('choices');
-        choicesContainer.innerHTML = ''; // Clear previous choices
+        // Update the story text
+        document.getElementById('story-text').textContent = plot.text;
 
+        // Remove existing buttons (if any)
+        const choiceButtonsContainer = document.getElementById('choice-buttons');
+        choiceButtonsContainer.innerHTML = ''; 
+
+        // Create new buttons based on the current choices
         plot.choices.forEach(choice => {
             const button = document.createElement('button');
-            button.innerText = choice.text;
-            button.onclick = () => this.handleChoice(choice.next);
-            choicesContainer.appendChild(button);
+            button.classList.add('choice-btn');
+            button.textContent = choice.text;
+            button.onclick = () => this.handleChoice(choice.next); // Add event listener to handle the next plot
+            choiceButtonsContainer.appendChild(button);
         });
     }
 
-    // Handle user choice and progress to the next plot
+    // Handle the user's choice and move to the next plot
     handleChoice(nextPlotIndex) {
-        const nextPlot = this.currentStory.plot[nextPlotIndex];
+        this.currentPlotIndex = nextPlotIndex;
+        const nextPlot = this.currentStory.plot[this.currentPlotIndex];
         this.displayPlot(nextPlot);
     }
 }
 
-// Initialize the Storyteller instance
+// Initialize the Storyteller class
 const storyteller = new Storyteller();
-storyteller.initialize();
+
+// Handle genre selection
+document.querySelectorAll('.choice-btn').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const genre = event.target.getAttribute('data-choice');
+        storyteller.startStory(genre);  // Start the chosen story
+    });
+});
