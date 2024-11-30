@@ -202,18 +202,7 @@ class Storyteller {
         this.currentStory = null; // To track the active story
     }
 
-    // Initialize genre selection
-    initialize() {
-        document.querySelectorAll('.choice-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const genre = e.target.getAttribute('data-choice');
-                this.startStory(genre);
-            });
-        });
-    }
-
-     // Start the story based on the selected genre
-     startStory(storyType) {
+    startStory(storyType) {
         this.currentStory = this.stories[storyType];  // Store the current story
         this.currentPlotIndex = 0;  // Start from the first plot
         this.displayPlot(this.currentStory.plot[this.currentPlotIndex]);  // Display the first plot
