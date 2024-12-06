@@ -1,4 +1,3 @@
-// Improved `stories` structure with self-contained endings.
 const stories = {
     'Sci-Fi': {
         start: {
@@ -39,34 +38,55 @@ const stories = {
             choices: []
         }
     },
-    // Similarly for Medieval and Apocalyptic...
+    'Medieval': {
+        start: {
+            text: "You stand before a grand castle. What will you do?",
+            choices: [
+                { text: "Enter the castle", next: "castleEntrance" },
+                { text: "Explore the nearby forest", next: "forestPath" }
+            ]
+        },
+        castleEntrance: {
+            text: "You step into the dimly lit castle hall. You hear a noise!",
+            choices: [
+                { text: "Investigate the noise", next: "hauntedRoom" },
+                { text: "Leave the castle", next: "outside" }
+            ]
+        },
+        forestPath: {
+            text: "The forest is serene, but you feel eyes watching you.",
+            choices: [
+                { text: "Follow the feeling", next: "mysteriousClearing" },
+                { text: "Return to the castle", next: "castleEntrance" }
+            ]
+        },
+        hauntedRoom: {
+            text: "You find a ghost who warns you to leave!",
+            choices: []
+        },
+        outside: {
+            text: "You safely return home. Maybe the castle wasn't a good idea.",
+            choices: []
+        },
+        mysteriousClearing: {
+            text: "You discover a magical treasure in the clearing!",
+            choices: []
+        }
+    },
+    // Add "Apocalyptic" similarly...
 };
 
-function showEnding(node) {
-    const storyText = document.getElementById('story-text');
-    const choiceButtons = document.getElementById('choice-buttons');
-
-    // Display the ending text
-    storyText.textContent = node.text;
-
-    // Clear and add a restart button
-    choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
-}
-
 function restart() {
-    // Reset the UI to genre selection
     document.getElementById('story-container').style.display = 'none';
     document.getElementById('genre-selection').style.display = 'block';
 }
 
 function startStory(genre) {
-    // Ensure the genre exists
     if (!stories[genre]) {
-        alert("Error: Selected genre not found!");
+        alert("Selected genre not found!");
         return;
     }
 
-    // Initialize story UI
     document.getElementById('genre-selection').style.display = 'none';
     document.getElementById('story-container').style.display = 'block';
     updateStory(stories[genre].start, genre);
@@ -76,36 +96,31 @@ function updateStory(node, genre) {
     const storyText = document.getElementById('story-text');
     const choiceButtons = document.getElementById('choice-buttons');
 
-    // Ensure the node exists
     if (!node) {
-        storyText.textContent = "An error occurred. This path is missing!";
+        storyText.textContent = "An error occurred. Path is missing!";
         choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
         return;
     }
 
-    // Update the story text
     storyText.textContent = node.text;
 
-    // Clear and repopulate choice buttons
     choiceButtons.innerHTML = '';
     if (node.choices && node.choices.length > 0) {
         node.choices.forEach(choice => {
             const button = document.createElement('button');
             button.textContent = choice.text;
-
-            // Update the story on button click
             button.onclick = () => {
                 const nextNode = stories[genre][choice.next];
                 if (nextNode) {
                     updateStory(nextNode, genre);
                 } else {
-                    showEnding({ text: "An error occurred. This path is missing!" });
+                    storyText.textContent = "An error occurred. Path not found!";
+                    choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
                 }
             };
             choiceButtons.appendChild(button);
         });
     } else {
-        // If no choices, show the ending
-        showEnding(node);
+        choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
     }
 }

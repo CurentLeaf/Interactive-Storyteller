@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyteller</title>
+    <title>Interactive Story</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #story-container {
+            margin-top: 20px;
+        }
         button {
-            margin: 12px;
-            padding: 10px;
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <div id="genre-selection">
-        <h2>Select Your Genre</h2>
+        <h1>Welcome to the Interactive Story</h1>
+        <p>Select Your Genre</p>
         <button onclick="startStory('Sci-Fi')">Sci-Fi</button>
         <button onclick="startStory('Medieval')">Medieval</button>
         <button onclick="startStory('Apocalyptic')">Apocalyptic</button>
     </div>
-    
-    
-    <div id="choice-buttons"></div> <!-- This container will hold the dynamic buttons for the choices -->
-    
+
     <div id="story-container" style="display:none;">
-        <p id="story-text">Welcome to your adventure!</p>
+        <p id="story-text">Story text will appear here.</p>
         <div id="choice-buttons"></div>
-    </div>    
+    </div>
 
     <script src="script.js"></script>
 </body>
