@@ -12,19 +12,20 @@
     </style>
 </head>
 <body>
-    <div id="story-container">
-        <p id="story-text">Welcome to the storyteller! Choose your genre:</p>
-        <button class="choice-btn" data-choice="sci-fi">Sci-Fi</button>
-        <button class="choice-btn" data-choice="medieval">Medieval</button>
-        <button class="choice-btn" data-choice="apocalyptic">Apocalyptic</button>
+    <div id="genre-selection">
+        <h2>Select Your Genre</h2>
+        <button onclick="startStory('Sci-Fi')">Sci-Fi</button>
+        <button onclick="startStory('Medieval')">Medieval</button>
+        <button onclick="startStory('Apocalyptic')">Apocalyptic</button>
     </div>
+    
     
     <div id="choice-buttons"></div> <!-- This container will hold the dynamic buttons for the choices -->
     
-    <div id="choices-container" style="display:none;">
-        <p id="story-text"></p>
-        <div id="choices"></div>
-    </div>
+    <div id="story-container" style="display:none;">
+        <p id="story-text">Welcome to your adventure!</p>
+        <div id="choice-buttons"></div>
+    </div>    
 
     <script src="script.js"></script>
 </body>
