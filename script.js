@@ -1,42 +1,116 @@
 const stories = {
     'Sci-Fi': {
         start: {
-            text: "You find yourself aboard a mysterious spaceship. What will you do?",
+            text: "You wake up in a cold, metallic room on an alien spaceship. The air is filled with the hum of machinery. A faint, robotic voice echoes: 'Subject awake. Initiate observation.' What will you do?",
             choices: [
-                { text: "Explore the control room", next: "controlRoom" },
-                { text: "Investigate the cargo bay", next: "cargoBay" }
+                { text: "Search the room for anything useful", next: "searchRoom" },
+                { text: "Try to communicate with the voice", next: "communicateVoice" },
+                { text: "Attempt to escape the room", next: "escapeRoom" }
             ]
         },
-        controlRoom: {
-            text: "The control room is filled with blinking lights. Suddenly, alarms blare!",
+        searchRoom: {
+            text: "You scan the room and find a small, handheld device glowing faintly on a console. As you pick it up, the hum grows louder, and a door slides open. Beyond it, you hear strange chittering noises.",
             choices: [
-                { text: "Attempt to shut down the alarm", next: "shutDownAlarm" },
-                { text: "Escape to the docking bay", next: "dockingBay" }
+                { text: "Enter the hallway cautiously", next: "hallway" },
+                { text: "Hide in the room and observe", next: "hideInRoom" }
             ]
         },
-        cargoBay: {
-            text: "The cargo bay contains strange alien artifacts. One begins to glow!",
+        communicateVoice: {
+            text: "You speak into the void, 'Who are you? What do you want?' The robotic voice responds, 'Cooperate and survive. Defy and perish.' Suddenly, a hologram of an alien appears, pointing toward a panel on the wall.",
             choices: [
-                { text: "Touch the artifact", next: "artifactTouched" },
-                { text: "Back away slowly", next: "backAway" }
+                { text: "Follow the alien's guidance", next: "followAlien" },
+                { text: "Refuse to cooperate and challenge the alien", next: "challengeAlien" }
             ]
         },
-        shutDownAlarm: {
-            text: "You successfully deactivate the alarm and save the ship!",
+        escapeRoom: {
+            text: "You rush to the door and find a keypad glowing with symbols. Alarms begin to blare as you randomly press buttons. The door opens, but the alarms attract heavy footsteps approaching rapidly.",
+            choices: [
+                { text: "Run down the corridor", next: "corridorEscape" },
+                { text: "Confront whoever is coming", next: "confrontIntruder" }
+            ]
+        },
+        hallway: {
+            text: "The hallway is dimly lit, with walls pulsating as if alive. Ahead, you see two paths: one leads to a room filled with glowing tanks, and the other to a dark, silent corridor.",
+            choices: [
+                { text: "Enter the room with glowing tanks", next: "glowingTanks" },
+                { text: "Explore the dark corridor", next: "darkCorridor" }
+            ]
+        },
+        hideInRoom: {
+            text: "You hide behind a console as the chittering grows louder. Through the door, you see small, insect-like creatures scuttling past. One pauses and seems to sniff the air.",
+            choices: [
+                { text: "Hold your breath and wait", next: "creatureMovesOn" },
+                { text: "Attempt to attack the creature", next: "creatureAttack" }
+            ]
+        },
+        followAlien: {
+            text: "You approach the panel the hologram indicated. A series of symbols lights up. The alien speaks: 'Decipher to unlock.' Time is running out as a countdown begins.",
+            choices: [
+                { text: "Attempt to solve the puzzle", next: "solvePuzzle" },
+                { text: "Smash the panel out of frustration", next: "smashPanel" }
+            ]
+        },
+        challengeAlien: {
+            text: "You shout at the hologram, 'I’m not your prisoner!' The hologram flickers, and suddenly the floor drops out beneath you, sending you into a dark chamber.",
+            choices: [
+                { text: "Explore the chamber", next: "exploreChamber" },
+                { text: "Look for a way back up", next: "wayBackUp" }
+            ]
+        },
+        glowingTanks: {
+            text: "The tanks are filled with glowing, green liquid, each containing a suspended humanoid figure. One tank begins to crack as you hear a hiss.",
+            choices: [
+                { text: "Inspect the cracking tank", next: "crackingTank" },
+                { text: "Leave the room immediately", next: "leaveTanks" }
+            ]
+        },
+        darkCorridor: {
+            text: "The corridor is unnervingly silent, but you feel a faint vibration beneath your feet. A faint light flickers at the end.",
+            choices: [
+                { text: "Investigate the light", next: "lightInvestigation" },
+                { text: "Retreat and try another path", next: "retreatPath" }
+            ]
+        },
+        creatureMovesOn: {
+            text: "The creature seems to lose interest and scuttles away. You breathe a sigh of relief, but now you hear metallic footsteps approaching from another direction.",
+            choices: [
+                { text: "Prepare to defend yourself", next: "defendYourself" },
+                { text: "Look for an escape route", next: "lookEscapeRoute" }
+            ]
+        },
+        creatureAttack: {
+            text: "You grab a nearby tool and lunge at the creature. It lets out a screech, summoning others. You’ve made a mistake.",
             choices: []
         },
-        dockingBay: {
-            text: "You escape in a pod, but the ship is lost forever.",
-            choices: []
+        solvePuzzle: {
+            text: "You quickly decipher the symbols, and the door unlocks, revealing a vast control room with a massive star map.",
+            choices: [
+                { text: "Examine the star map", next: "examineStarMap" },
+                { text: "Look for a way to contact help", next: "contactHelp" }
+            ]
         },
-        artifactTouched: {
-            text: "The artifact teleports you to a new galaxy!",
-            choices: []
+        smashPanel: {
+            text: "You smash the panel, and the alien hologram flickers out. The room goes dark, and the hum of the ship grows louder.",
+            choices: [
+                { text: "Try to navigate the dark", next: "navigateDark" },
+                { text: "Stay still and wait for help", next: "waitHelp" }
+            ]
         },
-        backAway: {
-            text: "You safely retreat, but the mystery remains unsolved.",
-            choices: []
-        }
+        exploreChamber: {
+            text: "The chamber is filled with strange machinery, glowing with pulsating lights. A terminal flashes with alien script, inviting interaction.",
+            choices: [
+                { text: "Interact with the terminal", next: "interactTerminal" },
+                { text: "Ignore it and explore further", next: "exploreFurther" }
+            ]
+        },
+        wayBackUp: {
+            text: "You find a series of pipes leading upward. As you climb, the metal creaks ominously.",
+            choices: [
+                { text: "Continue climbing", next: "continueClimbing" },
+                { text: "Drop back down", next: "dropBackDown" }
+            ]
+        },
+        // Additional paths and unique endings can be added here...
     },
     'Medieval': {
         start: {
@@ -72,8 +146,7 @@ const stories = {
             text: "You discover a magical treasure in the clearing!",
             choices: []
         }
-    },
-    // Add "Apocalyptic" similarly...
+    }
 };
 
 function restart() {
