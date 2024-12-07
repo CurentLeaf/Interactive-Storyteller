@@ -312,6 +312,161 @@ const stories = {
             text: "You stand your ground as a heavily armored knight appears. They lunge at you, and the battle is fierce. Though valiant, you are struck down.",
             choices: []
         }
+    },
+
+    'Apocalyptic': {
+        start: {
+            text: "You wake up in the remnants of a crumbling building, sunlight streaming through a hole in the roof. The air smells of ash and decay. In the distance, you hear faint gunfire. A voice crackles over a nearby radio: 'Survivor detected. Proceed with caution.' What will you do?",
+            choices: [
+                { text: "Search the building for supplies", next: "searchBuilding" },
+                { text: "Respond to the radio", next: "respondRadio" },
+                { text: "Try to escape the building", next: "escapeBuilding" }
+            ]
+        },
+        searchBuilding: {
+            text: "You search the building and find a rusted knife and a half-empty bottle of water. Suddenly, you hear footsteps echoing from the stairwell.",
+            choices: [
+                { text: "Confront whoever is coming", next: "confrontStairwell" },
+                { text: "Hide and observe", next: "hideAndObserve" }
+            ]
+        },
+        respondRadio: {
+            text: "You pick up the radio and say, 'Who is this? What do you want?' The voice replies, 'Stay where you are, survivor. Help is coming.' Moments later, a drone flies past the broken window.",
+            choices: [
+                { text: "Wait for the drone to return", next: "waitDrone" },
+                { text: "Run before they arrive", next: "runFromDrone" }
+            ]
+        },
+        escapeBuilding: {
+            text: "You dash to the exit and find a shattered door. Outside, the street is desolate, with abandoned cars and rubble everywhere. Distant shadows dart between the wreckage.",
+            choices: [
+                { text: "Head toward the shadows", next: "approachShadows" },
+                { text: "Search the abandoned cars", next: "searchCars" }
+            ]
+        },
+        confrontStairwell: {
+            text: "You step into the stairwell and see a ragged figure holding a pipe. They freeze when they see you, their face grimy and desperate.",
+            choices: [
+                { text: "Attempt to talk to them", next: "talkToFigure" },
+                { text: "Attack first to stay safe", next: "attackFigure" }
+            ]
+        },
+        hideAndObserve: {
+            text: "You duck behind a crumbled wall and watch as a group of scavengers enters the building. They rummage through the debris, muttering about supplies.",
+            choices: [
+                { text: "Sneak past them", next: "sneakPast" },
+                { text: "Wait and follow them", next: "followScavengers" }
+            ]
+        },
+        waitDrone: {
+            text: "The drone hovers outside, scanning the building. Moments later, a group of armored soldiers enters, weapons raised. 'Hands up!' one shouts.",
+            choices: [
+                { text: "Surrender to them", next: "surrenderSoldiers" },
+                { text: "Fight back", next: "fightSoldiers" }
+            ]
+        },
+        runFromDrone: {
+            text: "You bolt down the stairs as the drone buzzes after you. Outside, its spotlight searches frantically as you dive into an alleyway.",
+            choices: [
+                { text: "Find a place to hide", next: "findHidingSpot" },
+                { text: "Keep running", next: "keepRunning" }
+            ]
+        },
+        approachShadows: {
+            text: "You cautiously approach the shadows and find a small group of survivors. They stare at you warily, weapons drawn.",
+            choices: [
+                { text: "Ask to join them", next: "joinSurvivors" },
+                { text: "Attack to take their supplies", next: "attackSurvivors" }
+            ]
+        },
+        searchCars: {
+            text: "You search the abandoned cars and find a crowbar and a can of food. Suddenly, you hear growls behind you and see feral dogs approaching.",
+            choices: [
+                { text: "Climb onto a car", next: "climbCar" },
+                { text: "Fight the dogs", next: "fightDogs" }
+            ]
+        },
+        talkToFigure: {
+            text: "You hold up your hands and say, 'I’m not a threat.' The figure relaxes slightly and says, 'There’s nothing here. You’re wasting your time.'",
+            choices: [
+                { text: "Ask them to team up", next: "teamUp" },
+                { text: "Leave them and move on", next: "moveOn" }
+            ]
+        },
+        attackFigure: {
+            text: "You lunge at the figure with your knife. They fight back fiercely, but you manage to wound them. They collapse, breathing heavily, as you take their supplies.",
+            choices: []
+        },
+        sneakPast: {
+            text: "You sneak past the scavengers, careful not to make a sound. Outside, you spot a working motorcycle hidden beneath a tarp.",
+            choices: [
+                { text: "Take the motorcycle and leave", next: "takeMotorcycle" },
+                { text: "Search the area further", next: "searchArea" }
+            ]
+        },
+        followScavengers: {
+            text: "You follow the scavengers as they leave the building. They lead you to a hidden bunker filled with supplies.",
+            choices: [
+                { text: "Sneak into the bunker", next: "sneakBunker" },
+                { text: "Reveal yourself to them", next: "revealSelf" }
+            ]
+        },
+        surrenderSoldiers: {
+            text: "You raise your hands as the soldiers take you into custody. They lead you to a fortified base where you’re interrogated but eventually offered safety.",
+            choices: []
+        },
+        fightSoldiers: {
+            text: "You grab the nearest weapon and fight back. The soldiers overwhelm you quickly, and your journey ends in darkness.",
+            choices: []
+        },
+        findHidingSpot: {
+            text: "You hide beneath a pile of debris as the drone buzzes past. Hours later, you emerge, cold and hungry, into the desolate streets.",
+            choices: []
+        },
+        keepRunning: {
+            text: "You keep running until your legs give out. The drone eventually loses interest, but you collapse, exhausted, in an abandoned subway station.",
+            choices: []
+        },
+        joinSurvivors: {
+            text: "You ask to join the group. After some hesitation, they agree and welcome you. Together, you navigate the dangerous ruins.",
+            choices: []
+        },
+        attackSurvivors: {
+            text: "You attack the group, but they’re prepared. Their superior numbers overwhelm you, and your journey ends in the ruins.",
+            choices: []
+        },
+        climbCar: {
+            text: "You climb onto a car, fending off the dogs until they lose interest. Exhausted, you continue searching the area for supplies.",
+            choices: []
+        },
+        fightDogs: {
+            text: "You face the dogs with your crowbar, managing to drive them away. Wounded but alive, you press on.",
+            choices: []
+        },
+        teamUp: {
+            text: "The figure agrees to join you. Together, you scavenge supplies and share stories of survival in the ruined world.",
+            choices: []
+        },
+        moveOn: {
+            text: "You decide to leave the figure behind and continue your journey alone. The road ahead is dangerous but full of possibilities.",
+            choices: []
+        },
+        takeMotorcycle: {
+            text: "You take the motorcycle and speed off into the wasteland, leaving the scavengers and their dangers behind.",
+            choices: []
+        },
+        searchArea: {
+            text: "You search the area further and find a stash of supplies hidden in a nearby building. Your perseverance pays off.",
+            choices: []
+        },
+        sneakBunker: {
+            text: "You sneak into the bunker and grab as many supplies as you can carry. As you leave, you hear the scavengers returning.",
+            choices: []
+        },
+        revealSelf: {
+            text: "You reveal yourself to the scavengers and offer to trade. After some tense negotiation, they let you leave with a few supplies.",
+            choices: []
+        }
     }
 };
 
