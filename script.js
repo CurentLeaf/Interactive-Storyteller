@@ -110,9 +110,29 @@ const stories = {
                 { text: "Look for another way out", next: "anotherWayOut" }
             ]
         },
+        confrontIntruder: {
+            text: "You approach the intruder, asking what they are doing here. They suddenly lunge at you and you trip on wires behind you, darkness filling your vision.",
+            choices: []
+        },
+        corridorEscape: {
+            text: "You run the other way down the corridor, not wanting to confront whatever was walking towards you. Your frantic running leads you into a hallway.",
+            choices: [
+                { text: "Enter hallway", next: "hallway"}
+            ]
+        },
+        lightInvestiation: {
+            text: "You walk towards the light but before you could reach it the floor falls beneath you and you fall into an abyss.",
+            choices: []
+        },
         crackingTank: {
             text: "The tank shatters, releasing a humanoid figure. It steps forward, shimmering with energy, and speaks: 'You have freed me. Together, we can escape.'",
             choices: []
+        },
+        leaveTanks: {
+            text: "You leave the tanks and wander back into a nearby hallway.",
+            choices: [
+                {text: "Enter hallway", next: "hallway"}
+            ]
         },
         retreatPath: {
             text: "You retreat carefully, but the pulsating walls seem to close in. Suddenly, the floor collapses, sending you into an abyss.",
