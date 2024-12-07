@@ -110,6 +110,10 @@ const stories = {
                 { text: "Look for another way out", next: "anotherWayOut" }
             ]
         },
+        regainControl: {
+            text: "Using all of your might and guidance of the alien, you were able to steer the spaceship away from the asteroid and fly away to safety",
+            choices: []
+        },
         confrontIntruder: {
             text: "You approach the intruder, asking what they are doing here. They suddenly lunge at you and you trip on wires behind you, darkness filling your vision.",
             choices: []
@@ -120,7 +124,7 @@ const stories = {
                 { text: "Enter hallway", next: "hallway"}
             ]
         },
-        lightInvestiation: {
+        lightInvestigation: {
             text: "You walk towards the light but before you could reach it the floor falls beneath you and you fall into an abyss.",
             choices: []
         },
