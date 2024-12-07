@@ -79,39 +79,71 @@ const stories = {
             ]
         },
         creatureAttack: {
-            text: "You grab a nearby tool and lunge at the creature. It lets out a screech, summoning others. You’ve made a mistake.",
+            text: "You grab a nearby tool and lunge at the creature. It lets out a screech, summoning others. They overwhelm you, and your journey ends in darkness.",
             choices: []
         },
         solvePuzzle: {
-            text: "You quickly decipher the symbols, and the door unlocks, revealing a vast control room with a massive star map.",
+            text: "You quickly decipher the symbols, and the door unlocks, revealing a vast control room with a massive star map. A message appears: 'Coordinates set for home.'",
             choices: [
-                { text: "Examine the star map", next: "examineStarMap" },
-                { text: "Look for a way to contact help", next: "contactHelp" }
+                { text: "Initiate the coordinates", next: "returnHome" },
+                { text: "Search for other systems", next: "searchSystems" }
             ]
         },
         smashPanel: {
-            text: "You smash the panel, and the alien hologram flickers out. The room goes dark, and the hum of the ship grows louder.",
+            text: "You smash the panel, and the alien hologram flickers out. The room goes dark, and the hum of the ship grows louder. Suddenly, the ship accelerates, throwing you into a wall.",
             choices: [
-                { text: "Try to navigate the dark", next: "navigateDark" },
-                { text: "Stay still and wait for help", next: "waitHelp" }
+                { text: "Try to regain control", next: "regainControl" },
+                { text: "Brace for impact", next: "braceImpact" }
             ]
         },
         exploreChamber: {
-            text: "The chamber is filled with strange machinery, glowing with pulsating lights. A terminal flashes with alien script, inviting interaction.",
+            text: "The chamber is filled with strange machinery, glowing with pulsating lights. A terminal flashes with alien script, inviting interaction. You hear a faint heartbeat-like thrum.",
             choices: [
                 { text: "Interact with the terminal", next: "interactTerminal" },
                 { text: "Ignore it and explore further", next: "exploreFurther" }
             ]
         },
         wayBackUp: {
-            text: "You find a series of pipes leading upward. As you climb, the metal creaks ominously.",
+            text: "You find a series of pipes leading upward. As you climb, the metal creaks ominously. With one final heave, you reach a hatch leading to the surface of the ship.",
             choices: [
-                { text: "Continue climbing", next: "continueClimbing" },
-                { text: "Drop back down", next: "dropBackDown" }
+                { text: "Open the hatch", next: "openHatch" },
+                { text: "Look for another way out", next: "anotherWayOut" }
             ]
         },
-        // Additional paths and unique endings can be added here...
+        crackingTank: {
+            text: "The tank shatters, releasing a humanoid figure. It steps forward, shimmering with energy, and speaks: 'You have freed me. Together, we can escape.'",
+            choices: []
+        },
+        retreatPath: {
+            text: "You retreat carefully, but the pulsating walls seem to close in. Suddenly, the floor collapses, sending you into an abyss.",
+            choices: []
+        },
+        defendYourself: {
+            text: "You grab a metal rod nearby and prepare to defend yourself. The footsteps grow louder, but a humanoid figure steps into the room, holding out a hand in peace.",
+            choices: []
+        },
+        lookEscapeRoute: {
+            text: "You search frantically and find a vent large enough to crawl through. It leads to the surface of the ship, where you see endless stars.",
+            choices: []
+        },
+        returnHome: {
+            text: "You initiate the coordinates, and the control room hums to life. The ship locks onto Earth and begins its journey home. You breathe a sigh of relief as familiar stars come into view.",
+            choices: []
+        },
+        searchSystems: {
+            text: "You decide to search other systems. The star map shows countless possibilities, and you set course for the nearest habitable planet. Adventure awaits.",
+            choices: []
+        },
+        braceImpact: {
+            text: "The ship crashes into a planet's atmosphere, burning up on entry. You are lost to the void.",
+            choices: []
+        },
+        interactTerminal: {
+            text: "The terminal displays schematics of the ship. You discover a hidden escape route and manage to flee moments before the ship self-destructs.",
+            choices: []
+        }
     },
+
     'Medieval': {
         start: {
             text: "You stand before a grand castle. What will you do?",
