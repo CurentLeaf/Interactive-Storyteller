@@ -170,36 +170,146 @@ const stories = {
 
     'Medieval': {
         start: {
-            text: "You stand before a grand castle. What will you do?",
+            text: "You wake up in a damp stone chamber, the air heavy with the smell of mildew and smoke. Faint torchlight flickers from a crack under the wooden door. A booming voice echoes: 'The chosen one stirs. Let the trial begin.' What will you do?",
             choices: [
-                { text: "Enter the castle", next: "castleEntrance" },
-                { text: "Explore the nearby forest", next: "forestPath" }
+                { text: "Search the chamber for anything useful", next: "searchChamber" },
+                { text: "Call out to the voice", next: "callOutVoice" },
+                { text: "Attempt to break down the door", next: "breakDoor" }
             ]
         },
-        castleEntrance: {
-            text: "You step into the dimly lit castle hall. You hear a noise!",
+        searchChamber: {
+            text: "You search the chamber and find a rusted dagger hidden beneath a pile of straw. As you grasp it, the door creaks open, revealing a narrow, shadowy corridor. Distant whispers fill the air.",
             choices: [
-                { text: "Investigate the noise", next: "hauntedRoom" },
-                { text: "Leave the castle", next: "outside" }
+                { text: "Step into the corridor cautiously", next: "corridor" },
+                { text: "Hide in the chamber and observe", next: "hideInChamber" }
             ]
         },
-        forestPath: {
-            text: "The forest is serene, but you feel eyes watching you.",
+        callOutVoice: {
+            text: "You shout into the void, 'Who are you? Why am I here?' The voice answers, 'Prove yourself, or perish.' Suddenly, a robed figure appears behind the door, pointing toward a glowing runic altar.",
             choices: [
-                { text: "Follow the feeling", next: "mysteriousClearing" },
-                { text: "Return to the castle", next: "castleEntrance" }
+                { text: "Follow the figure's guidance", next: "followFigure" },
+                { text: "Defy the figure and challenge them", next: "challengeFigure" }
             ]
         },
-        hauntedRoom: {
-            text: "You find a ghost who warns you to leave!",
+        breakDoor: {
+            text: "You charge at the door, slamming into it with all your strength. It bursts open, but the sound of your escape echoes loudly. Heavy footsteps approach rapidly.",
+            choices: [
+                { text: "Run down the corridor", next: "runCorridor" },
+                { text: "Confront whoever is coming", next: "confrontIntruder" }
+            ]
+        },
+        corridor: {
+            text: "The corridor is damp and lined with stone carvings of monstrous faces. Ahead, you see two paths: one leads to a brightly lit hall, the other to a dark, foreboding staircase.",
+            choices: [
+                { text: "Enter the brightly lit hall", next: "brightHall" },
+                { text: "Descend the dark staircase", next: "darkStaircase" }
+            ]
+        },
+        hideInChamber: {
+            text: "You hide behind a crumbling pillar as shadows flicker through the doorway. A cloaked figure enters, scanning the room with a glowing orb in hand.",
+            choices: [
+                { text: "Stay hidden and wait", next: "hiddenWait" },
+                { text: "Ambush the cloaked figure", next: "ambushFigure" }
+            ]
+        },
+        followFigure: {
+            text: "The robed figure gestures toward the runic altar. A series of glowing symbols appears, and the voice says: 'Prove your worth by deciphering the runes.' The symbols begin to pulse.",
+            choices: [
+                { text: "Attempt to solve the runes", next: "solveRunes" },
+                { text: "Smash the altar in frustration", next: "smashAltar" }
+            ]
+        },
+        challengeFigure: {
+            text: "You shout at the figure, 'I am no pawn in your games!' The figure laughs, and the floor beneath you collapses, dropping you into a cavern filled with glowing crystals.",
+            choices: [
+                { text: "Explore the cavern", next: "exploreCavern" },
+                { text: "Look for a way back up", next: "findWayUp" }
+            ]
+        },
+        brightHall: {
+            text: "The hall is filled with golden light and rows of gleaming suits of armor. As you step forward, one of the suits begins to move.",
+            choices: [
+                { text: "Approach the moving armor", next: "approachArmor" },
+                { text: "Retreat and choose another path", next: "retreatPath" }
+            ]
+        },
+        darkStaircase: {
+            text: "The staircase winds downward, its steps slick with moss. At the bottom, you find a massive wooden door, etched with glowing runes.",
+            choices: [
+                { text: "Inspect the runes closely", next: "inspectRunes" },
+                { text: "Push open the door", next: "pushDoor" }
+            ]
+        },
+        hiddenWait: {
+            text: "The cloaked figure seems to lose interest and leaves. You exhale in relief, but now hear distant chanting from another corridor.",
+            choices: [
+                { text: "Follow the chanting", next: "followChanting" },
+                { text: "Search the chamber for another exit", next: "searchExit" }
+            ]
+        },
+        ambushFigure: {
+            text: "You leap at the cloaked figure with the rusted dagger. The figure lets out a screech, summoning others from the corridor. They overpower you, and the darkness claims you.",
             choices: []
         },
-        outside: {
-            text: "You safely return home. Maybe the castle wasn't a good idea.",
+        solveRunes: {
+            text: "You carefully decipher the runes, and the altar opens, revealing a golden chalice. The voice proclaims, 'You are worthy. The trial is complete.'",
             choices: []
         },
-        mysteriousClearing: {
-            text: "You discover a magical treasure in the clearing!",
+        smashAltar: {
+            text: "You smash the altar, and the glowing runes fade. The voice sighs, 'Unworthy.' The chamber begins to collapse, and you narrowly escape through a hidden passage.",
+            choices: []
+        },
+        exploreCavern: {
+            text: "The cavern is filled with glowing crystals that hum softly. As you touch one, an image of a distant castle fills your mind.",
+            choices: []
+        },
+        findWayUp: {
+            text: "You climb a series of jagged rocks and find a hidden staircase leading back to the surface. As you emerge, the robed figure awaits, unimpressed by your escape.",
+            choices: []
+        },
+        approachArmor: {
+            text: "The suit of armor steps forward and kneels, offering you a shining sword. The voice says, 'You have proven your courage.'",
+            choices: []
+        },
+        retreatPath: {
+            text: "You retreat carefully, but the hall seems to shift and close behind you. You find yourself back at the start of the corridor, disoriented but alive.",
+            choices: []
+        },
+        inspectRunes: {
+            text: "You study the runes and discover they represent an ancient incantation. As you speak the words, the door creaks open, revealing a treasure-filled chamber.",
+            choices: []
+        },
+        pushDoor: {
+            text: "You push open the door, but a trap triggers. Arrows rain down from above, and your journey ends in the shadows.",
+            choices: []
+        },
+        followChanting: {
+            text: "You follow the chanting to a hidden ritual. The figures stop and offer you a choice: join them or face their wrath.",
+            choices: [
+                { text: "Join the ritual", next: "joinRitual" },
+                { text: "Refuse and fight", next: "refuseRitual" }
+            ]
+        },
+        searchExit: {
+            text: "You search the chamber and find a loose stone in the wall. Pushing it reveals a secret passage leading to the castle courtyard.",
+            choices: []
+        },
+        joinRitual: {
+            text: "You kneel before the figures, joining their ancient ritual. The power of the order flows through you, binding you to their cause.",
+            choices: []
+        },
+        refuseRitual: {
+            text: "You draw your weapon and refuse their offer. Though you fight bravely, their magic overwhelms you, and darkness claims your soul.",
+            choices: []
+        },
+        runCorridor: {
+            text: "You sprint down the corridor, narrowly avoiding the pursuing footsteps. You find yourself at the base of a staircase.",
+            choices: [
+                { text: "Ascend the staircase", next: "darkStaircase" }
+            ]
+        },
+        confrontIntruder: {
+            text: "You stand your ground as a heavily armored knight appears. They lunge at you, and the battle is fierce. Though valiant, you are struck down.",
             choices: []
         }
     }
