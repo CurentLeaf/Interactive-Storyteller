@@ -533,67 +533,70 @@ function updateStory(node, genre) {
     }
 }
 
-const storyContainer = document.getElementById("story-container");
-const storyText = document.getElementById("story-text");
-const choicesDiv = document.getElementById("choices");
+document.addEventListener("DOMContentLoaded", function () {
+    const storyContainer = document.getElementById("story-container");
+    const storyText = document.getElementById("story-text");
+    const choicesDiv = document.getElementById("choices");
 
-let currentTheme = "Sci-Fi";
-let currentScene = "start";
+    const genreSelection = document.getElementById("genre-selection");
 
-// Define color schemes for each theme
-const themeColors = {
-  "Sci-Fi": {
-    background: "#00bfff", // Light blue for Sci-Fi
-    color: "#000000" // Black text
-  },
-  "Medieval": {
-    background: "#8B4513", // Brown for Medieval
-    color: "#fff8dc" // Light beige text
-  },
-  "Apocalyptic": {
-    background: "#808080", // Grey for Apocalyptic
-    color: "#ff6347" // Tomato red text
-  }
-};
+    let currentTheme = "Sci-Fi";
+    let currentScene = "start";
 
-// Function to load a story scene
-function loadScene(sceneKey) {
-  const scene = stories[currentTheme][sceneKey];
-  storyText.textContent = scene.text;
+    // Define color schemes for each theme
+    const themeColors = {
+        "Sci-Fi": { background: "#00bfff", color: "#000000" },
+        "Medieval": { background: "#8B4513", color: "#fff8dc" },
+        "Apocalyptic": { background: "#808080", color: "#ff6347" }
+    };
 
-  // Clear old choices (if any)
-  choicesDiv.innerHTML = "";
+    // Function to start the story based on selected genre
+    function startStory(theme) {
+        genreSelection.style.display = "none"; // Hide genre selection
+        storyContainer.style.display = "block"; // Show story container
+        currentTheme = theme;
+        storyContainer.setAttribute("data-theme", theme);
+        loadScene(currentScene); // Start the story
+    }
 
-  // Get the color scheme for the current theme
-  const colors = themeColors[currentTheme];
+    // Function to load a story scene
+    function loadScene(sceneKey) {
+        const scene = stories[currentTheme][sceneKey];
+        storyText.textContent = scene.text;
 
-  scene.choices.forEach(choice => {
-    const button = document.createElement("button");
-    button.textContent = choice.text;
-    button.className = "choice-button";
+        // Clear old choices (if any)
+        choicesDiv.innerHTML = "";
 
-    // Apply the button's color based on the current theme
-    button.style.backgroundColor = colors.background;
-    button.style.color = colors.color;
+        // Get the color scheme for the current theme
+        const colors = themeColors[currentTheme];
 
-    button.onclick = () => loadScene(choice.next);
-    choicesDiv.appendChild(button);
-  });
-}
+        scene.choices.forEach(choice => {
+            const button = document.createElement("button");
+            button.textContent = choice.text;
+            button.className = "choice-button";
 
-// Function to change the theme
-function changeTheme(theme) {
-  currentTheme = theme;
-  storyContainer.setAttribute("data-theme", theme);
-  currentScene = "start"; // Reset the story to the start for the new theme
-  loadScene(currentScene);
-}
+            // Apply the button's color based on the current theme
+            button.style.backgroundColor = colors.background;
+            button.style.color = colors.color;
 
-// Add event listeners to theme buttons
-document.getElementById("theme-sci-fi").onclick = () => changeTheme("Sci-Fi");
-document.getElementById("theme-medieval").onclick = () => changeTheme("Medieval");
-document.getElementById("theme-apocalyptic").onclick = () => changeTheme("Apocalyptic");
+            button.onclick = () => loadScene(choice.next);
+            choicesDiv.appendChild(button);
+        });
+    }
 
-// Initial scene load
-loadScene(currentScene);
+    // Function to change the theme
+    function changeTheme(theme) {
+        currentTheme = theme;
+        storyContainer.setAttribute("data-theme", theme);
+        currentScene = "start"; // Reset the story to the start for the new theme
+        loadScene(currentScene);
+    }
 
+    // Add event listeners to theme buttons
+    document.getElementById("theme-sci-fi").onclick = () => changeTheme("Sci-Fi");
+    document.getElementById("theme-medieval").onclick = () => changeTheme("Medieval");
+    document.getElementById("theme-apocalyptic").onclick = () => changeTheme("Apocalyptic");
+
+    // Export startStory to the global scope so it can be called on genre selection
+    window.startStory = startStory;
+});
