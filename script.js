@@ -528,3 +528,40 @@ function updateStory(node, genre) {
         choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
     }
 }
+
+const storyContainer = document.getElementById("story-container");
+const storyText = document.getElementById("story-text");
+const choicesDiv = document.getElementById("choices");
+
+let currentTheme = "Sci-Fi";
+let currentScene = "start";
+
+// Function to load a story scene
+function loadScene(sceneKey) {
+  const scene = stories[currentTheme][sceneKey];
+  storyText.textContent = scene.text;
+  choicesDiv.innerHTML = ""; // Clear old choices
+  scene.choices.forEach(choice => {
+    const button = document.createElement("button");
+    button.textContent = choice.text;
+    button.className = "choice-button";
+    button.onclick = () => loadScene(choice.next);
+    choicesDiv.appendChild(button);
+  });
+}
+
+// Function to change the theme
+function changeTheme(theme) {
+  currentTheme = theme;
+  storyContainer.setAttribute("data-theme", theme);
+  currentScene = "start"; // Reset the story to the start for the new theme
+  loadScene(currentScene);
+}
+
+// Add event listeners to theme buttons
+document.getElementById("theme-sci-fi").onclick = () => changeTheme("Sci-Fi");
+document.getElementById("theme-medieval").onclick = () => changeTheme("Medieval");
+document.getElementById("theme-apocalyptic").onclick = () => changeTheme("Apocalyptic");
+
+// Initial scene load
+loadScene(currentScene);

@@ -63,3 +63,46 @@ body {
         gap: 15px;
     }
 }
+
+.story-text {
+    position: absolute;
+    top: 10%;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333; /* Adjust for theme */
+}
+
+.choice-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Sci-Fi */
+.sci-fi {
+    background: linear-gradient(to right, #000428, #004e92);
+    color: white;
+    box-shadow: 0 0 10px #6f00ff;
+}
+
+/* Medieval */
+.medieval {
+    background: linear-gradient(to right, #4a4a4a, #2e2e2e);
+    color: #d4af37;
+    box-shadow: 0 0 5px #808080;
+}
+
+/* Apocalyptic */
+.apocalyptic {
+    background: linear-gradient(to right, #4e0000, #8b0000);
+    color: #ffa500;
+    box-shadow: 0 0 5px #ff4500;
+}

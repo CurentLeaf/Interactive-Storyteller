@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Genre Selection -->
     <div id="genre-selection" class="centered-container">
         <h1>Welcome to the Interactive Story</h1>
         <p>Select Your Genre</p>
@@ -17,9 +18,17 @@
         </div>
     </div>
 
-    <div id="story-container" class="centered-container" style="display:none;">
+    <!-- Story Container -->
+    <div id="story-container" class="centered-container" style="display:none;" data-theme="Sci-Fi">
         <p id="story-text">Story text will appear here.</p>
         <div id="choice-buttons" class="button-container"></div>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-buttons" style="display:none;">
+        <button id="theme-sci-fi" class="theme-button" onclick="changeTheme('Sci-Fi')">Sci-Fi Theme</button>
+        <button id="theme-medieval" class="theme-button" onclick="changeTheme('Medieval')">Medieval Theme</button>
+        <button id="theme-apocalyptic" class="theme-button" onclick="changeTheme('Apocalyptic')">Apocalyptic Theme</button>
     </div>
 
     <script src="script.js"></script>
