@@ -175,6 +175,10 @@ const stories = {
         interactTerminal: {
             text: "The terminal displays schematics of the ship. You discover a hidden escape route and manage to flee moments before the ship self-destructs.",
             choices: []
+        },
+        exploreFurther: {
+            text: "You decide to keep exploring the chamber. You approach the hearthbeat thrum and palce your hand on it. You feel a huge surge and you become one with the ship. You can see everything and with your newfound body decide to explore the galaxy.",
+            choices: []
         }
     },
 
@@ -540,7 +544,12 @@ let currentScene = "start";
 function loadScene(sceneKey) {
   const scene = stories[currentTheme][sceneKey];
   storyText.textContent = scene.text;
-  choicesDiv.innerHTML = ""; // Clear old choices
+
+  // Clear old choices by removing child elements one by one
+  while (choicesDiv.firstChild) {
+    choicesDiv.removeChild(choicesDiv.firstChild);
+  }
+
   scene.choices.forEach(choice => {
     const button = document.createElement("button");
     button.textContent = choice.text;
