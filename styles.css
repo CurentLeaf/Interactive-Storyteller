@@ -1,3 +1,4 @@
+/* Extend background to fit the screen */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #8fd3f4);
@@ -5,8 +6,11 @@ body {
     animation: gradientBG 10s ease infinite;
     color: #ffffff;
     text-align: center;
-    padding: 20px;
     margin: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
 }
 
 @keyframes gradientBG {
@@ -15,50 +19,38 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-#story-container {
+/* Center the content */
+.centered-container {
     max-width: 600px;
-    margin: 0 auto;
+    text-align: center;
 }
 
+/* Genre Buttons */
 .choice-btn {
-    background-color: #4CAF50;
+    background-color: #87CEEB; /* Sky blue */
     color: white;
     padding: 15px 30px;
     font-size: 18px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    margin: 10px auto;
-    display: block;
-    width: 60%; /* Centering effect */
+    margin: 10px;
+    min-width: 120px; /* Minimum width for consistent button size */
+    flex: 1; /* Flex property to equalize button size */
 }
 
 .choice-btn:hover {
-    background-color: #45a049;
+    background-color: #00bfff; /* Slightly darker blue on hover */
 }
 
-#story-text {
-    font-size: 20px;
-    margin-bottom: 20px;
+/* Align buttons horizontally */
+.button-container {
+    display: flex;
+    justify-content: center; /* Horizontally center buttons */
+    gap: 10px; /* Add spacing between buttons */
 }
 
-h1 {
-    font-family: 'Georgia', serif; /* Change title font */
-    font-size: 36px;
-}
-
-/* Center genre buttons and give more spacing */
-#genre-selection button {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 18px;
-    border-radius: 12px;
-    padding: 15px 30px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-#genre-selection button:hover {
-    background-color: #45a049;
+/* Style for story buttons matching genre buttons */
+#choice-buttons .choice-btn {
+    background-color: #87CEEB; /* Same as genre buttons */
 }

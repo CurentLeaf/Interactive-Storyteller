@@ -10,17 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="genre-selection">
+    <div id="genre-selection" class="centered-container">
         <h1>Welcome to the Interactive Story</h1>
         <p>Select Your Genre</p>
-        <button class="choice-btn" onclick="startStory('Sci-Fi')">Sci-Fi</button>
-        <button class="choice-btn" onclick="startStory('Medieval')">Medieval</button>
-        <button class="choice-btn" onclick="startStory('Apocalyptic')">Apocalyptic</button>
+        <div class="button-container">
+            <button class="choice-btn" onclick="startStory('Sci-Fi')">Sci-Fi</button>
+            <button class="choice-btn" onclick="startStory('Medieval')">Medieval</button>
+            <button class="choice-btn" onclick="startStory('Apocalyptic')">Apocalyptic</button>
+        </div>
     </div>
 
-    <div id="story-container" style="display:none;">
+    <div id="story-container" class="centered-container" style="display:none;">
         <p id="story-text">Story text will appear here.</p>
-        <div id="choice-buttons"></div>
+        <div id="choice-buttons" class="button-container"></div>
     </div>
 
     <script src="script.js"></script>
