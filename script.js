@@ -540,18 +540,42 @@ const choicesDiv = document.getElementById("choices");
 let currentTheme = "Sci-Fi";
 let currentScene = "start";
 
+// Define color schemes for each theme
+const themeColors = {
+  "Sci-Fi": {
+    background: "#00bfff", // Light blue for Sci-Fi
+    color: "#000000" // Black text
+  },
+  "Medieval": {
+    background: "#8B4513", // Brown for Medieval
+    color: "#fff8dc" // Light beige text
+  },
+  "Apocalyptic": {
+    background: "#808080", // Grey for Apocalyptic
+    color: "#ff6347" // Tomato red text
+  }
+};
+
 // Function to load a story scene
 function loadScene(sceneKey) {
   const scene = stories[currentTheme][sceneKey];
   storyText.textContent = scene.text;
 
-  // Clear old choices by removing child elements one by one
+  // Clear old choices (if any)
+  choicesDiv.innerHTML = "";
 
+  // Get the color scheme for the current theme
+  const colors = themeColors[currentTheme];
 
   scene.choices.forEach(choice => {
     const button = document.createElement("button");
     button.textContent = choice.text;
     button.className = "choice-button";
+
+    // Apply the button's color based on the current theme
+    button.style.backgroundColor = colors.background;
+    button.style.color = colors.color;
+
     button.onclick = () => loadScene(choice.next);
     choicesDiv.appendChild(button);
   });
@@ -572,3 +596,4 @@ document.getElementById("theme-apocalyptic").onclick = () => changeTheme("Apocal
 
 // Initial scene load
 loadScene(currentScene);
+
