@@ -114,6 +114,16 @@ const stories = {
             text: "Using all of your might and guidance of the alien, you were able to steer the spaceship away from the asteroid and fly away to safety",
             choices: []
         },
+        openHatch: {
+            text: "You open the hatch and immediately get sucked into the infinite void of space, doomed to float in the abyss for all enternity",
+            choices: []
+        },
+        anotherWayOut: {
+            text: "But then you realize that this might lead to somewhere you don't want to be at. You climb back down and enter a hallway",
+            choices: [
+                { text: "Enter hallway", next: "hallway"}
+            ]
+        },
         confrontIntruder: {
             text: "You approach the intruder, asking what they are doing here. They suddenly lunge at you and you trip on wires behind you, darkness filling your vision.",
             choices: []
