@@ -4,29 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Story</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        #story-container {
-            margin-top: 20px;
-        }
-        button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Import Google Fonts for the title -->
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="genre-selection">
         <h1>Welcome to the Interactive Story</h1>
         <p>Select Your Genre</p>
-        <button onclick="startStory('Sci-Fi')">Sci-Fi</button>
-        <button onclick="startStory('Medieval')">Medieval</button>
-        <button onclick="startStory('Apocalyptic')">Apocalyptic</button>
+        <button class="choice-btn" onclick="startStory('Sci-Fi')">Sci-Fi</button>
+        <button class="choice-btn" onclick="startStory('Medieval')">Medieval</button>
+        <button class="choice-btn" onclick="startStory('Apocalyptic')">Apocalyptic</button>
     </div>
 
     <div id="story-container" style="display:none;">
