@@ -546,9 +546,7 @@ function loadScene(sceneKey) {
   storyText.textContent = scene.text;
 
   // Clear old choices by removing child elements one by one
-  while (choicesDiv.firstChild) {
-    choicesDiv.removeChild(choicesDiv.firstChild);
-  }
+
 
   scene.choices.forEach(choice => {
     const button = document.createElement("button");
