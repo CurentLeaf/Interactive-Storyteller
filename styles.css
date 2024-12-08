@@ -1,7 +1,7 @@
-/* Extend background to fit the screen */
+/* Make the background seamless and cover the entire viewport */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #8fd3f4);
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #8fd3f4);
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
     color: #ffffff;
@@ -9,8 +9,8 @@ body {
     margin: 0;
     height: 100vh; /* Full viewport height */
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
 }
 
 @keyframes gradientBG {
@@ -19,38 +19,47 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Center the content */
+/* Centered container for all content */
 .centered-container {
-    max-width: 600px;
     text-align: center;
 }
 
-/* Genre Buttons */
+/* Styling for buttons */
+.button-container {
+    display: flex;
+    justify-content: center; /* Align buttons horizontally */
+    gap: 20px; /* Space between buttons */
+}
+
 .choice-btn {
-    background-color: #87CEEB; /* Sky blue */
+    background-color: skyblue; /* Sky blue buttons */
+    border: none;
     color: white;
     padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    margin: 10px;
-    min-width: 120px; /* Minimum width for consistent button size */
-    flex: 1; /* Flex property to equalize button size */
+    border-radius: 10px;
+    transition: transform 0.2s, background-color 0.3s;
+    width: 150px; /* Make buttons consistent in width */
+    text-align: center;
 }
 
 .choice-btn:hover {
-    background-color: #00bfff; /* Slightly darker blue on hover */
+    background-color: #1e90ff; /* Slightly darker blue on hover */
+    transform: scale(1.1); /* Slight zoom effect */
 }
 
-/* Align buttons horizontally */
-.button-container {
-    display: flex;
-    justify-content: center; /* Horizontally center buttons */
-    gap: 10px; /* Add spacing between buttons */
+/* Ensure container height expands dynamically */
+.centered-container {
+    max-width: 600px;
+    width: 100%;
 }
 
-/* Style for story buttons matching genre buttons */
-#choice-buttons .choice-btn {
-    background-color: #87CEEB; /* Same as genre buttons */
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px;
+    }
 }
