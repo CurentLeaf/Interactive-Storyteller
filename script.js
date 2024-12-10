@@ -485,8 +485,9 @@ const stories = {
 };
 
 function restart() {
-    document.getElementById('story-container').style.display = 'none';
-    document.getElementById('genre-selection').style.display = 'block';
+    document.getElementById('story-container').style.display = 'none';  // Hide the story container
+    document.getElementById('genre-selection').style.display = 'block';  // Show genre selection
+    document.getElementById('theme-buttons').style.display = 'none';  // Hide the theme buttons if needed
 }
 
 function startStory(genre) {
@@ -502,7 +503,7 @@ function startStory(genre) {
 
 function updateStory(node, genre) {
     const storyText = document.getElementById('story-text');
-    const choiceButtons = document.getElementById('choice-buttons');
+    const choiceButtons = document.getElementById('choices'); // Make sure you're targeting the correct container
 
     if (!node) {
         storyText.textContent = "An error occurred. Path is missing!";
@@ -511,8 +512,8 @@ function updateStory(node, genre) {
     }
 
     storyText.textContent = node.text;
+    choiceButtons.innerHTML = ''; // Clear any previous choices
 
-    choiceButtons.innerHTML = '';
     if (node.choices && node.choices.length > 0) {
         node.choices.forEach(choice => {
             const button = document.createElement('button');
@@ -529,9 +530,10 @@ function updateStory(node, genre) {
             choiceButtons.appendChild(button);
         });
     } else {
-        choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
+        choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';  // Ensure a restart button is available if no choices are present
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const storyContainer = document.getElementById("story-container");
