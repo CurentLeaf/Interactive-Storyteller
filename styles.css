@@ -37,6 +37,8 @@ body {
     display: flex;
     justify-content: center; /* Align buttons horizontally */
     gap: 20px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    margin-top: 30px; /* Add space between text and buttons */
 }
 
 .choice-btn {
@@ -81,8 +83,7 @@ body {
     color: #333; /* Adjust for readability */
     width: 80%;
     margin: 0 auto;
-    position: absolute;
-    top: 5%; /* Place at the top of the page */
+    padding-top: 10%; /* Adds padding to ensure it's properly centered vertically */
 }
 
 /* Styling for the choice buttons */
