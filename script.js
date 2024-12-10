@@ -503,7 +503,7 @@ function startStory(genre) {
 
 function updateStory(node, genre) {
     const storyText = document.getElementById('story-text');
-    const choiceButtons = document.getElementById('choices'); // Make sure you're targeting the correct container
+    const choiceButtons = document.getElementById('choices'); // Ensure you're targeting the correct container
 
     if (!node) {
         storyText.textContent = "An error occurred. Path is missing!";
@@ -533,6 +533,7 @@ function updateStory(node, genre) {
         choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';  // Ensure a restart button is available if no choices are present
     }
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
