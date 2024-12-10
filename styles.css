@@ -5,12 +5,12 @@ body {
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
     color: #ffffff;
-    text-align: center;
     margin: 0;
     height: 100vh; /* Full viewport height */
     display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: center; /* Center horizontally and vertically */
+    align-items: center;
 }
 
 @keyframes gradientBG {
@@ -22,6 +22,9 @@ body {
 /* Centered container for all content */
 .centered-container {
     text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 20px; /* Add padding for smaller screens */
 }
 
 /* Styling for buttons */
@@ -29,6 +32,8 @@ body {
     display: flex;
     justify-content: center; /* Align buttons horizontally */
     gap: 20px; /* Space between buttons */
+    margin-top: 20px; /* Space between story text and buttons */
+    flex-wrap: wrap; /* Wrap buttons on smaller screens */
 }
 
 .choice-btn {
@@ -50,10 +55,16 @@ body {
     transform: scale(1.1); /* Slight zoom effect */
 }
 
-/* Ensure container height expands dynamically */
-.centered-container {
-    max-width: 600px;
+/* Styling for the story text at the top of the page */
+#story-text {
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    color: #ffffff; /* White text for readability on gradient */
+    margin: 0;
+    padding: 0;
     width: 100%;
+    max-width: 600px;
+    text-align: center;
 }
 
 /* Add responsiveness for smaller screens */
@@ -62,50 +73,16 @@ body {
         flex-direction: column; /* Stack buttons vertically */
         gap: 15px;
     }
+
+    #story-text {
+        font-size: 2rem; /* Slightly smaller font size */
+    }
 }
 
-/* Styling for the story text at the top of the page */
-#story-text {
-    font-size: 2.5rem; /* Larger font size */
-    font-weight: bold; /* Bold text */
-    text-align: center;
-    margin-top: 20px;
-    color: #333; /* Adjust for readability */
-    width: 80%;
-    margin: 0 auto;
-    position: absolute;
-    top: 5%; /* Place at the top of the page */
-}
-
-/* Styling for the choice buttons */
-.choice-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Sci-Fi */
-.sci-fi {
-    background: linear-gradient(to right, #000428, #004e92);
-    color: white;
-    box-shadow: 0 0 10px #6f00ff;
-}
-
-/* Medieval */
-.medieval {
-    background: linear-gradient(to right, #4a4a4a, #2e2e2e);
-    color: #d4af37;
-    box-shadow: 0 0 5px #808080;
-}
-
-/* Apocalyptic */
-.apocalyptic {
-    background: linear-gradient(to right, #4e0000, #8b0000);
-    color: #ffa500;
-    box-shadow: 0 0 5px #ff4500;
+/* Ensure container height expands dynamically */
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
