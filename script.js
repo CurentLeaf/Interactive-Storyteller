@@ -505,7 +505,7 @@ function startStory(genre) {
 // Function to update the story
 function updateStory(node, genre) {
     const storyText = document.getElementById('story-text');
-    const choiceButtons = document.getElementById('choices-buttons');
+    const choiceButtons = document.getElementById('choice-buttons');
 
     if (!node) {
         storyText.textContent = "An error occurred. Path is missing!";
@@ -556,7 +556,7 @@ function updateStory(node, genre) {
 document.addEventListener("DOMContentLoaded", function () {
     const storyContainer = document.getElementById("story-container");
     const storyText = document.getElementById("story-text");
-    const choicesDiv = document.getElementById("choices");
+    const choicesDiv = document.getElementById("choice_buttons");
 
     const genreSelection = document.getElementById("genre-selection");
 
