@@ -583,26 +583,37 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadScene(sceneKey) {
         const scene = stories[currentTheme][sceneKey];
         storyText.textContent = scene.text;
-
+    
         // Clear old choices (if any)
         choicesDiv.innerHTML = "";
-
+    
         // Get the color scheme for the current theme
         const colors = themeColors[currentTheme];
-
-        scene.choices.forEach(choice => {
-            const button = document.createElement("button");
-            button.textContent = choice.text;
-            button.className = "choice-button";
-
-            // Apply the button's color based on the current theme
-            button.style.backgroundColor = colors.background;
-            button.style.color = colors.color;
-
-            button.onclick = () => loadScene(choice.next);
-            choicesDiv.appendChild(button);
-        });
+    
+        if (scene.choices && scene.choices.length > 0) {
+            // Create buttons for each choice
+            scene.choices.forEach(choice => {
+                const button = document.createElement("button");
+                button.textContent = choice.text;
+                button.className = "choice-button";
+    
+                // Apply the button's color based on the current theme
+                button.style.backgroundColor = colors.background;
+                button.style.color = colors.color;
+    
+                button.onclick = () => loadScene(choice.next);
+                choicesDiv.appendChild(button);
+            });
+        } else {
+            // If no choices are available, add the Restart button
+            console.log("Adding Restart button because no choices are available.");
+            const restartBtn = document.createElement("button");
+            restartBtn.textContent = "Restart";
+            restartBtn.onclick = restart;
+            choicesDiv.appendChild(restartBtn);
+        }
     }
+    
 
     // Function to change the theme
     function changeTheme(theme) {
