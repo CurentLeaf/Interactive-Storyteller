@@ -485,10 +485,11 @@ const stories = {
 };
 
 function restart() {
-    document.getElementById('story-container').style.display = 'none';  // Hide the story container
-    document.getElementById('genre-selection').style.display = 'block';  // Show genre selection
-    document.getElementById('theme-buttons').style.display = 'none';  // Hide the theme buttons if needed
+    document.getElementById('story-container').style.display = 'none';
+    document.getElementById('genre-selection').style.display = 'block';
+    document.getElementById('choice-buttons').innerHTML = ''; // Clear old buttons
 }
+
 
 function startStory(genre) {
     if (!stories[genre]) {
@@ -504,13 +505,21 @@ function startStory(genre) {
 // Function to update the story
 function updateStory(node, genre) {
     const storyText = document.getElementById('story-text');
-    const choiceButtons = document.getElementById('choices');
+    const choiceButtons = document.getElementById('choices-buttons');
 
-    // Display the story text
+    if (!node) {
+        storyText.textContent = "An error occurred. Path is missing!";
+        choiceButtons.innerHTML = '';
+        const restartBtn = document.createElement('button');
+        restartBtn.textContent = "Restart";
+        restartBtn.onclick = restart;
+        choiceButtons.appendChild(restartBtn);
+        return;
+    }
+
     storyText.textContent = node.text;
 
-    // Clear previous choices
-    choiceButtons.innerHTML = '';
+    choiceButtons.innerHTML = ''; // Clear previous choices
 
     // If there are choices, display them
     if (node.choices && node.choices.length > 0) {
@@ -523,14 +532,21 @@ function updateStory(node, genre) {
                     updateStory(nextNode, genre);
                 } else {
                     storyText.textContent = "An error occurred. Path not found!";
-                    choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
+                    choiceButtons.innerHTML = '';
+                    const restartBtn = document.createElement('button');
+                    restartBtn.textContent = "Restart";
+                    restartBtn.onclick = restart;
+                    choiceButtons.appendChild(restartBtn);
                 }
             };
             choiceButtons.appendChild(button);
         });
     } else {
         // If there are no choices left (end of story), show the restart button
-        choiceButtons.innerHTML = '<button onclick="restart()">Restart</button>';
+        const restartBtn = document.createElement('button');
+        restartBtn.textContent = "Restart";
+        restartBtn.onclick = restart;
+        choiceButtons.appendChild(restartBtn);
     }
 }
 
