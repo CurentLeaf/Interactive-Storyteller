@@ -19,6 +19,25 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+.genre-selection {
+    text-align: center;
+}
+
+.genre-selection .text,
+.genre-selection .buttons {
+    margin: 0 auto; /* Centering horizontally */
+    display: block; /* Ensure block level to center */
+}
+
+.genre-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
 /* Centered container for all content */
 .centered-container {
     text-align: center;
