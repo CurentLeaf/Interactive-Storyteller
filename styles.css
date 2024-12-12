@@ -62,14 +62,14 @@ body {
 
 /* Ensure container height expands dynamically */
 .centered-container {
-    max-width: 600px;
+    max-width: 1000px;
     width: 100%;
 }
 
 /* Add responsiveness for smaller screens */
 @media (max-width: 768px) {
     .button-container {
-        flex-direction: column; /* Stack buttons vertically */
+        flex-direction: row; /* Stack buttons vertically */
         gap: 15px;
     }
 }
