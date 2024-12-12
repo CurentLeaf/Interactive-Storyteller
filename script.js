@@ -484,79 +484,10 @@ const stories = {
     }
 };
 
-function restart() {
-    document.getElementById('story-container').style.display = 'none';
-    document.getElementById('genre-selection').style.display = 'block';
-    document.getElementById('choice-buttons').innerHTML = ''; // Clear old buttons
-}
-
-
-function startStory(genre) {
-    if (!stories[genre]) {
-        alert("Selected genre not found!");
-        return;
-    }
-
-    document.getElementById('genre-selection').style.display = 'none';
-    document.getElementById('story-container').style.display = 'block';
-    updateStory(stories[genre].start, genre);
-}
-
-// Function to update the story
-function updateStory(node, genre) {
-    const storyText = document.getElementById('story-text');
-    const choiceButtons = document.getElementById('choice-buttons');
-
-    if (!node) {
-        storyText.textContent = "An error occurred. Path is missing!";
-        choiceButtons.innerHTML = '';
-        const restartBtn = document.createElement('button');
-        restartBtn.textContent = "Restart";
-        restartBtn.onclick = restart;
-        choiceButtons.appendChild(restartBtn);
-        return;
-    }
-
-    storyText.textContent = node.text;
-
-    choiceButtons.innerHTML = ''; // Clear previous choices
-
-    // If there are choices, display them
-    if (node.choices && node.choices.length > 0) {
-        node.choices.forEach(choice => {
-            const button = document.createElement('button');
-            button.textContent = choice.text;
-            button.onclick = () => {
-                const nextNode = stories[genre][choice.next];
-                if (nextNode) {
-                    updateStory(nextNode, genre);
-                } else {
-                    storyText.textContent = "An error occurred. Path not found!";
-                    choiceButtons.innerHTML = '';
-                    const restartBtn = document.createElement('button');
-                    restartBtn.textContent = "Restart";
-                    restartBtn.onclick = restart;
-                    choiceButtons.appendChild(restartBtn);
-                }
-            };
-            choiceButtons.appendChild(button);
-        });
-    } else {
-        // If there are no choices left (end of story), show the restart button
-        const restartBtn = document.createElement('button');
-        restartBtn.textContent = "Restart";
-        restartBtn.onclick = restart;
-        choiceButtons.appendChild(restartBtn);
-    }
-}
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const storyContainer = document.getElementById("story-container");
     const storyText = document.getElementById("story-text");
-    const choicesDiv = document.getElementById("choice_buttons");
+    const choiceButtons = document.getElementById("choice-buttons"); // Ensure this ID matches
 
     const genreSelection = document.getElementById("genre-selection");
 
@@ -583,26 +514,26 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadScene(sceneKey) {
         const scene = stories[currentTheme][sceneKey];
         storyText.textContent = scene.text;
-    
+
         // Clear old choices (if any)
-        choicesDiv.innerHTML = "";
-    
+        choiceButtons.innerHTML = "";
+
         // Get the color scheme for the current theme
         const colors = themeColors[currentTheme];
-    
+
         if (scene.choices && scene.choices.length > 0) {
             // Create buttons for each choice
             scene.choices.forEach(choice => {
                 const button = document.createElement("button");
                 button.textContent = choice.text;
                 button.className = "choice-button";
-    
+
                 // Apply the button's color based on the current theme
                 button.style.backgroundColor = colors.background;
                 button.style.color = colors.color;
-    
+
                 button.onclick = () => loadScene(choice.next);
-                choicesDiv.appendChild(button);
+                choiceButtons.appendChild(button);
             });
         } else {
             // If no choices are available, add the Restart button
@@ -610,10 +541,17 @@ document.addEventListener("DOMContentLoaded", function () {
             const restartBtn = document.createElement("button");
             restartBtn.textContent = "Restart";
             restartBtn.onclick = restart;
-            choicesDiv.appendChild(restartBtn);
+            choiceButtons.appendChild(restartBtn);
         }
     }
-    
+
+    // Restart function
+    function restart() {
+        console.log("Restarting story...");
+        storyContainer.style.display = "none";  // Hide the story container
+        genreSelection.style.display = "block"; // Show the genre selection
+        choiceButtons.innerHTML = "";          // Clear all choices/buttons
+    }
 
     // Function to change the theme
     function changeTheme(theme) {
@@ -631,3 +569,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Export startStory to the global scope so it can be called on genre selection
     window.startStory = startStory;
 });
+
