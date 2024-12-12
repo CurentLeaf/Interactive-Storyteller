@@ -540,6 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Adding Restart button because no choices are available.");
             const restartBtn = document.createElement("button");
             restartBtn.textContent = "Restart";
+            restartBtn.className = "restart-button";
             restartBtn.onclick = restart;
             choiceButtons.appendChild(restartBtn);
         }
