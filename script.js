@@ -551,6 +551,7 @@ document.addEventListener("DOMContentLoaded", function () {
         storyContainer.style.display = "none";  // Hide the story container
         genreSelection.style.display = "block"; // Show the genre selection
         choiceButtons.innerHTML = "";          // Clear all choices/buttons
+        currentScene = "start";
     }
 
     // Function to change the theme
